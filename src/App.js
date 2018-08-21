@@ -31,7 +31,7 @@ handleSearch = () => {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
     const cityNames = cityList.map(city => city.name);
-    for (var i = 0; i < cityNames.length; i++) {
+    for (var i = 0; i <= cityNames.length; i++) {
         if (fixedString === (cityNames[i])) {
             const cityId = cityList[i].id;
             this.setState({cityId});

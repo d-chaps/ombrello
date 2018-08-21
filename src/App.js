@@ -40,13 +40,11 @@ handleSearch = () => {
 };
 
 
-
 handleAPIrequest = () => {
 
 
         const key = '9294f0507043ce42f17b079b26218d80';
         const cityId = this.state.cityId;
-        console.log(this.state.cityId);
 
         axios.get('http://api.openweathermap.org/data/2.5/forecast', {
             params: {
@@ -58,7 +56,6 @@ handleAPIrequest = () => {
                 const country = res.data.city.country;
                 const name = res.data.city.name;
                 const weatherNow = res.data.list;
-                console.log(weatherNow);
                 this.setState({country});
                 this.setState({name});
                 this.setState({weatherNow}, () =>{
@@ -85,12 +82,10 @@ handleAPIsearch = () => {
 
     apiPromise
         .then(() => {
-        console.log('City id found, promise fulfilled');
         this.handleAPIrequest();
         this.setState({cityId: ''});
         this.setState({errorMsg: ''});
         this.setState({isHidden: true});
-        console.log(this.state.isHidden);
         })
         .catch(() => {
             console.log('Something went wrong');

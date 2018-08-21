@@ -27,7 +27,7 @@ render() {
                             <WeatherColumn
                                 weatherTemp = {this.props.weatherNow[1].main.temp_min}
                                 dateNtime = {this.props.weatherNow[1].dt_txt}
-                                weatherDescription = {this.props.weatherNow[0].weather[0].description}
+                                weatherDescription = {this.props.weatherNow[1].weather[0].description}
                                 pressure = {this.props.weatherNow[1].main.pressure}
                                 humidity = {this.props.weatherNow[1].main.humidity}
                                 windSpeed = {this.props.weatherNow[1].wind.speed}
@@ -39,7 +39,7 @@ render() {
                             <WeatherColumn
                                 weatherTemp = {this.props.weatherNow[2].main.temp_min}
                                 dateNtime = {this.props.weatherNow[2].dt_txt}
-                                weatherDescription = {this.props.weatherNow[0].weather[0].description}
+                                weatherDescription = {this.props.weatherNow[2].weather[0].description}
                                 pressure = {this.props.weatherNow[2].main.pressure}
                                 humidity = {this.props.weatherNow[2].main.humidity}
                                 windSpeed = {this.props.weatherNow[2].wind.speed}

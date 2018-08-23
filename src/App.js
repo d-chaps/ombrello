@@ -3,7 +3,6 @@ import './style/App.css';
 import axios from "axios/index";
 import WeatherView from "./WeatherView";
 
-
 class App extends Component {
 
     constructor(props) {
@@ -31,19 +30,19 @@ handleSearch = () => {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
     const cityNames = cityList.map(city => city.name);
-    for (var i = 0; i <= cityNames.length; i++) {
+    for (var i = 0; i < cityNames.length; i++) {
         if (fixedString === (cityNames[i])) {
             const cityId = cityList[i].id;
             this.setState({cityId});
         }
     }
 };
-
+    ;
 
 handleAPIrequest = () => {
 
 
-        const key = '9294f0507043ce42f17b079b26218d80';
+        const key = process.env.REACT_APP_API_KEY;
         const cityId = this.state.cityId;
 
         axios.get('http://api.openweathermap.org/data/2.5/forecast', {
@@ -95,7 +94,6 @@ handleAPIsearch = () => {
 }
 
     render() {
-
 
         return <div className="App">
             <div className="ombrello">OMBRELLO</div>

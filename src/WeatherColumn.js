@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './style/App.css';
-import raning from './style/weatherIcons/raning.png';
+import raining from './style/weatherIcons/raining.png';
 import clear from './style/weatherIcons/clear.png';
 import cloudy from './style/weatherIcons/fewclouds.png';
 import thunderstorm from './style/weatherIcons/thunderstorm.png';
@@ -14,7 +14,7 @@ class WeatherColumn extends Component {
         let isCloudy = false;
         let isThunderstorm = false;
 
-        if (this.props.weatherDescription === 'broken clouds' || this.props.weatherDescription === 'light rain') {
+        if (this.props.weatherDescription === 'broken clouds' || this.props.weatherDescription === 'light rain' || this.props.weatherDescription === 'moderate rain') {
             isRaining = true
         } else if (this.props.weatherDescription === 'clear sky') {
             isClear = true;
@@ -28,7 +28,7 @@ class WeatherColumn extends Component {
             <div className="dateNtime">
                 {(this.props.dateNtime.slice(0,16))}</div>
             { isRaining &&
-            <div className="imgBox" alt="rain"><img src={raning}/></div>
+            <div className="imgBox" alt="rain"><img src={raining}/></div>
             }
             { isClear &&
             <div className="imgBox" alt="clear"><img src={clear} /></div>

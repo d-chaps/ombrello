@@ -1,4 +1,2 @@
 # ombrello
-Ombrello weather 
-
-:)
+Ombrello weather

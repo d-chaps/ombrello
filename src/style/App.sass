@@ -1,13 +1,11 @@
-$background-color: #292929
-$borderGrey: 1px solid dimgrey
-
 html
   overflow: hidden
 
 body
   margin: 0
   box-sizing: border-box
-  background-image: url(background.jpg)
+  filter: hue-rotate(328deg)
+  -webkit-filter: hue-rotate(328deg)
 
 html, body
   height: 100%
@@ -19,106 +17,124 @@ img
   margin-bottom: -20px
   margin-top: -10px
 
+.App
+  background-image: url(background.jpg)
+  height: 100%
+  width: 100%
+  position: absolute
+  top: 0
+  left: 0
 
-mainPage
-  .searchBox
-    position: fixed
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
-    margin-top: -220px
+.searchBox
+  position: fixed
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  margin-top: -220px
 
-  input[type=text]
-    border: $borderGrey
-    font-color: white
-    value-color: white
-    color: #e2e2e2
-
-  input[type=text]:focus
+input[type=text]
+  border: 1px solid dimgrey
+  font-color: white
+  value-color: white
+  color: #e2e2e2
+  &:focus
     background-color: #d0d0d0
-    border: $borderGrey
-    color: $background-color
+    border: 1px solid dimgrey
+    color: #292929
 
-  .errorMsg
-    font-size: 100px
+.errorMsg
+  font-size: 60px
+  color: #c3c3c3
+  font-family: Geneva, Tahoma, Verdana, sans-serif
+  text-shadow: #050c0f 2px 0px 0px, #050c0f 1.75517px 0.958851px 0px, #050c0f 1.0806px 1.68294px 0px, #050c0f 0.141474px 1.99499px 0px, #050c0f -0.832294px 1.81859px 0px, #050c0f -1.60229px 1.19694px 0px, #050c0f -1.97998px 0.28224px 0px, #050c0f -1.87291px -0.701566px 0px, #050c0f -1.30729px -1.5136px 0px, #050c0f -0.421592px -1.95506px 0px, #050c0f 0.567324px -1.91785px 0px, #050c0f 1.41734px -1.41108px 0px, #050c0f 1.92034px -0.558831px 0px
+  position: fixed
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  background-color: #292929
+  border: 1px solid #1d1d1d
+  opacity: 0.7
+  border-radius: 10px
+  padding: 15px
 
-  .ombrello
-    padding-left: 530px
-    padding-top: 340px
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
-    margin-left: 660px
-    color: lightgrey
-    opacity: 0.7
-    font-size: 60px
-    font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace
+.ombrello
+  padding-left: 530px
+  padding-top: 340px
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  margin-left: 660px
+  color: lightgrey
+  opacity: 0.7
+  font-size: 60px
+  font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace
 
-weatherColumns
-  .column
-    font-size: 20px
+.column
+  font-size: 20px
+  margin-top: 50px
 
-  .boxContent
-    margin-top: 100px
+.boxContent
+  margin-top: 100px
 
-  .weatherNow
-    background-color: $background-color
-    border: 1px solid #9c9c9c
-    opacity: 0.9
-    border-radius: 15px
+.cityInfo
+  position: fixed
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  font-size: 60px
+  margin-top: -80px
+  color: #c3c3c3
+  font-family: Geneva, Tahoma, Verdana, sans-serif
+  text-shadow: #050c0f 2px 0px 0px, #050c0f 1.75517px 0.958851px 0px, #050c0f 1.0806px 1.68294px 0px, #050c0f 0.141474px 1.99499px 0px, #050c0f -0.832294px 1.81859px 0px, #050c0f -1.60229px 1.19694px 0px, #050c0f -1.97998px 0.28224px 0px, #050c0f -1.87291px -0.701566px 0px, #050c0f -1.30729px -1.5136px 0px, #050c0f -0.421592px -1.95506px 0px, #050c0f 0.567324px -1.91785px 0px, #050c0f 1.41734px -1.41108px 0px, #050c0f 1.92034px -0.558831px 0px
 
-  .cityInfo
-    position: fixed
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
-    font-size: 60px
-    margin-top: -80px
-    color: #c3c3c3
-    font-family: Geneva,Tahoma,Verdana,sans-serif
+.weatherInfo
+  position: absolute
+  margin-top: 310px
+  padding-left: 150px
+  top: 150px
+  width: 1200px
 
-  .weatherInfo
-    position: absolute
-    margin-top: 310px
-    left: 250px
-    top: 150px
-    width: 1200px
+.weatherNow
+  color: #9c9c9c
+  background-color: #292929
+  border: 1px solid #1d1d1d
+  opacity: 0.85
+  border-radius: 15%
+  padding: 25px
 
-  .weatherNow
-    color: #9c9c9c
-    background-color: $background-color
-    border: 1px solid #1d1d1d
-    opacity: 0.7
-    border-radius: 10px
+.imageBox
+  margin: auto
 
-  .imageBox
-    margin: auto
+.dateNtime
+  margin-left: 60px
 
-  .dateNtime
-    margin-left: 55px
+.columns
 
-  .ombrello
-    padding-left: 530px
-    padding-top: 340px
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
-    margin-left: 660px
-    color: lightgrey
-    opacity: 0.7
-    font-size: 60px
-    font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace
+.ombrello
+  padding-left: 530px
+  padding-top: 340px
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  margin-left: 660px
+  color: lightgrey
+  opacity: 0.7
+  font-size: 60px
+  font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace
+  text-shadow: #6d7173 1px 0px 0px, #6d7173 0.540302px 0.841471px 0px, #6d7173 -0.416147px 0.909297px 0px, #6d7173 -0.989992px 0.14112px 0px, #6d7173 -0.653644px -0.756802px 0px, #6d7173 0.283662px -0.958924px 0px, #6d7173 0.96017px -0.279415px 0px
 
-  .weatherDescription
-    transform: translate(30%, -39%)
+.weatherDescription
+  transform: translate(30%, -39%)
 
-  .bold
-    color: whitesmoke
-    font-weight: bold
-    opacity: 0.8
-    padding-left: 5px
-    padding-right: 10px
-    font-size: 20px
+.bold
+  color: whitesmoke
+  font-weight: bold
+  opacity: 0.8
+  padding-left: 5px
+  padding-right: 10px
+  font-size: 20px
 
-  .moreInfo
-    display: inline-flex
+.moreInfo
+  display: inline-flex
+
+/*# sourceMappingURL=App.css.map

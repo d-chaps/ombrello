@@ -1,19 +1,14 @@
 import React, {Component} from 'react';
 import './style/App.css';
-import CitySearch from './api/CitySearch';
-import data from './cityList.json'
+import GetCurrentLocation from './api/GetCurrentLocation';
 const env = require('dotenv').config();
 
 class App extends Component {
 
-    state = {
-        cityList: data
-    }
-
 
     render() {
         return <div className="mainApp">
-            <CitySearch cityList={this.state.cityList}/>
+            <GetCurrentLocation/>
         </div>
     }
 }

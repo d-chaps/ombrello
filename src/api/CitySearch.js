@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import '../style/App.css';
+import './/style/style.css';
 import axios from "axios/index";
-import WeatherView from "../components/WeatherView";
-import PhotoSearch from './PhotoSearch';
+import CurrentWeather from "../components/CurrentWeather";
 
 class CitySearch extends Component {
 
@@ -10,55 +9,36 @@ class CitySearch extends Component {
         super(props);
 
         this.state = {
-            name: '',
-            cityName: '',
-            cityId: '',
-            country: '',
-            weatherNow: '',
-            errorMsg: '',
-            isHidden: false,
-            isLoaded: false,
-            isError: false
+            lat: '',
+            lng: '',
+            currently: '',
+            nextDays: '',
+            isReady: false
+
         }
     }
 
-    handleChange = (event) => {
-        this.setState({cityName: event.target.value});
+    componentDidMount() {
+            this.handleAPIsearch();
     }
 
-    handleSearch = () => {
-        const cityList = this.props.cityList;
-        const fixedString = this.state.cityName.replace(/\w\S*/g, (txt) => {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        });
-        const cityNames = cityList.map(city => city.name);
-        for (var i = 0; i < cityNames.length; i++) {
-            if (fixedString === (cityNames[i])) {
-                const cityId = cityList[i].id;
-                this.setState({cityId});
-            }
-        }
-    };
 
     handleAPIrequest = () => {
-        const key = process.env.REACT_APP_API_KEY;
-        const cityId = this.state.cityId;
+        const locationKey = process.env.REACT_APP_API_KEY;
+        const cityName = this.props.name;
 
-        axios.get('http://api.openweathermap.org/data/2.5/forecast', {
-            params: {
-                id: cityId,
-                APPID: key
-            }
-        })
+        axios.get('http://open.mapquestapi.com/geocoding/v1/address?key=lo0qC32FL18PT6AffYMuwfyxCaLqX7rb&location=' + cityName)
             .then(res => {
-                const country = res.data.city.country;
-                const name = res.data.city.name;
-                const weatherNow = res.data.list;
-                this.setState({country});
-                this.setState({name});
-                this.setState({weatherNow}, () => {
-                    this.setState({isLoaded: true});
-                    this.setState({photoState: false});
+                this.setState({lat: res.data.results[0].locations[0].displayLatLng.lat}, () => {
+                    this.setState({lng: res.data.results[0].locations[0].displayLatLng.lng}, () => {
+                        axios.get('https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/a66347e9c2bdb45fdb3ef2ee3fd03b55/' + this.state.lat + ',' + this.state.lng)
+                            .then(res => {
+                                console.log(res.data);
+                                this.setState({currently: res.data.currently.time}, () => {
+                                    this.setState({isReady: true});
+                                });
+                            })
+                    })
                 });
             })
             .catch(error => {
@@ -67,11 +47,11 @@ class CitySearch extends Component {
     };
 
     handleAPIsearch = () => {
+        console.log("api search");
         let apiPromise = new Promise((resolve, reject) => {
-            this.handleSearch();
 
             setTimeout(() => {
-                if (this.state.cityId) {
+                if (this.props.name !== '') {
                     resolve();
                 } else {
                     reject();
@@ -82,64 +62,31 @@ class CitySearch extends Component {
         apiPromise
             .then(() => {
                 this.handleAPIrequest();
-                this.setState({cityId: ''});
-                this.setState({errorMsg: ''});
-                this.setState({isHidden: true});
             })
             .catch(() => {
                 console.log('Something went wrong');
-                this.setState({isError: true});
-                this.setState({isHidden: false});
-                this.setState({isLoaded: false});
-                this.setState({errorMsg: 'City not in database'});
             });
     };
 
+test = () => {
+    console.log("dupa");
+}
+
     render() {
 
-        return (
-        <div className="app">
-            <div className="App"></div>
-            <div className="ombrello">OMBRELLO</div>
-            <div className="mainBox">
-                <div className="searchBox">
-                    <div className="searchBar">
-                        <div className="field has-addons has-background-grey">
-                            <div className="control">
-                                <input className="input is-medium" type="text"
-                                       placeholder="Type city name"
-                                       value={this.state.cityName}
-                                       onChange={event => this.handleChange(event)}
-                                />
-                            </div>
-                            <div className="control">
-                                <a className="button is-medium is-dark"
-                                   onClick={() => this.handleAPIsearch()}>
-                                    Search
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="boxContent">
-                    {this.state.isHidden && this.state.isLoaded &&
-                    <WeatherView
-                        name={this.state.name[0].toUpperCase() +
-                        this.state.name.substring(1)}
-                        weatherNow={this.state.weatherNow}
-                        country={this.state.country}
 
-                    />}
-                    {this.state.isHidden && this.state.isLoaded &&
-                    <PhotoSearch
-                        cityName={this.state.name}
-                    />}
-                    {this.state.isError && !this.state.isHidden && !this.state.isLoaded && <div className="errorMsg">
-                        {this.state.errorMsg}
-                    </div>}
-                </div>
+        if (this.props.isReady === true) {
+            const inputElem = document.getElementsByClassName("input")[0];
+            inputElem.addEventListener("keypress", this.test);
+        }
+
+        return (
+            <div className="weather">
+                {this.state.isReady &&
+                <CurrentWeather
+                    currently={this.state.currently}/>
+                }
             </div>
-        </div>
         )
     }
 }

@@ -68,16 +68,13 @@ class CitySearch extends Component {
             });
     };
 
-test = () => {
-    console.log("dupa");
-}
 
     render() {
 
 
         if (this.props.isReady === true) {
             const inputElem = document.getElementsByClassName("input")[0];
-            inputElem.addEventListener("keypress", this.test);
+            inputElem.addEventListener("keypress");
         }
 
         return (

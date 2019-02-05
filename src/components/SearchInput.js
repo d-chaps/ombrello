@@ -25,7 +25,6 @@ class SearchInput extends Component {
 
     handleClick = () => {
         this.setState({isClicked: true});
-        console.log("wciskanko enter");
     }
 
     render() {
